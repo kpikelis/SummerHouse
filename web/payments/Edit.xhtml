@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{resources.EditPaymentsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{resources.EditPaymentsLabel_paymentDate}" for="paymentDate" />
+                    <h:inputText id="paymentDate" value="#{paymentsController.selected.paymentDate}" title="#{resources.EditPaymentsTitle_paymentDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{resources.EditPaymentsLabel_payedAmount}" for="payedAmount" />
+                    <h:inputText id="payedAmount" value="#{paymentsController.selected.payedAmount}" title="#{resources.EditPaymentsTitle_payedAmount}" />
+                    <h:outputLabel value="#{resources.EditPaymentsLabel_isConfirmed}" for="isConfirmed" />
+                    <h:inputText id="isConfirmed" value="#{paymentsController.selected.isConfirmed}" title="#{resources.EditPaymentsTitle_isConfirmed}" />
+                    <h:outputLabel value="#{resources.EditPaymentsLabel_optLockVersion}" for="optLockVersion" />
+                    <h:inputText id="optLockVersion" value="#{paymentsController.selected.optLockVersion}" title="#{resources.EditPaymentsTitle_optLockVersion}" />
+                    <h:outputLabel value="#{resources.EditPaymentsLabel_membersId}" for="membersId" />
+                    <h:selectOneMenu id="membersId" value="#{paymentsController.selected.membersId}" title="#{resources.EditPaymentsTitle_membersId}" >
+                        <f:selectItems value="#{membersController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{resources.EditPaymentsLabel_reservationId}" for="reservationId" />
+                    <h:selectOneMenu id="reservationId" value="#{paymentsController.selected.reservationId}" title="#{resources.EditPaymentsTitle_reservationId}" >
+                        <f:selectItems value="#{reservationsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <table class="form-buttons">
+                    <tr>
+                        <td>
+                            <h:commandButton action="#{paymentsController.update}" value="#{resources.EditPaymentsSaveLink}"/>
+                        </td>
+                        <td>
+                            <h:button  outcome="View" value="#{resources.EditPaymentsViewLink}"/>
+                        </td>
+                        <td>
+                            <h:commandButton action="#{paymentsController.prepareList}" value="#{resources.EditPaymentsShowAllLink}" immediate="true"/>
+                        </td>
+                        <td>
+                            <h:button  outcome="/index" value="#{resources.EditPaymentsIndexLink}"/>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{resources.CreateMembersTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{resources.CreateMembersLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{membersController.selected.name}" title="#{resources.CreateMembersTitle_name}" />
+                    <h:outputLabel value="#{resources.CreateMembersLabel_surname}" for="surname" />
+                    <h:inputText id="surname" value="#{membersController.selected.surname}" title="#{resources.CreateMembersTitle_surname}" />
+                    <h:outputLabel value="#{resources.CreateMembersLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{membersController.selected.email}" title="#{resources.CreateMembersTitle_email}" />
+                    <h:outputLabel value="#{resources.CreateMembersLabel_type}" for="type" />
+                    <h:inputText id="type" value="#{membersController.selected.type}" title="#{resources.CreateMembersTitle_type}" />
+                    <h:outputLabel value="#{resources.CreateMembersLabel_points}" for="points" />
+                    <h:inputText id="points" value="#{membersController.selected.points}" title="#{resources.CreateMembersTitle_points}" />
+                </h:panelGrid>
+                <table class="form-buttons">
+                    <tr>
+                        <td>
+                            <h:commandButton action="#{membersController.create}" value="#{resources.CreateMembersSaveLink}"/>
+                        </td>
+                        <td>
+                            <h:commandButton action="#{membersController.prepareList}" value="#{resources.CreateMembersShowAllLink}" immediate="true"/>
+                        </td>
+                        <td>
+                            <h:button outcome="/index" value="#{resources.CreateMembersIndexLink}"/>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

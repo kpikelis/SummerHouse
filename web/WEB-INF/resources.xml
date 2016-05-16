@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="SummerHouseDataSOurce" type="javax.sql.DataSource">#Sun May 15 17:24:05 EEST 2016
+jdbcDriver=org.apache.derby.jdbc.ClientDriver
+password=app
+userName=app
+jdbcUrl=jdbc\:derby\://localhost\:1527/PSK
+</Resource>
+</resources>

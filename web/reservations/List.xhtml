@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{resources.ListReservationsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{resources.ListReservationsEmpty}" rendered="#{reservationsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{reservationsController.items.rowCount > 0}">
+                    <h:outputText value="#{reservationsController.pagination.pageFirstItem + 1}..#{reservationsController.pagination.pageLastItem + 1}/#{reservationsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{reservationsController.previous}" value="#{resources.Previous} #{reservationsController.pagination.pageSize}" rendered="#{reservationsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{reservationsController.next}" value="#{resources.Next} #{reservationsController.pagination.pageSize}" rendered="#{reservationsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{reservationsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{resources.ListReservationsTitle_reservationFromDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.reservationFromDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{resources.ListReservationsTitle_reservationToDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.reservationToDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{resources.ListReservationsTitle_additionalServicesId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.additionalServicesId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{resources.ListReservationsTitle_membersId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.membersId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{resources.ListReservationsTitle_summerHousesId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.summerHousesId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{reservationsController.prepareView}" value="#{resources.ListReservationsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{reservationsController.prepareEdit}" value="#{resources.ListReservationsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{reservationsController.destroy}" value="#{resources.ListReservationsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <table class="form-buttons">
+                    <tr>
+                        <td>
+                            <h:commandButton action="#{reservationsController.prepareCreate}" value="#{resources.ListReservationsCreateLink}"/>
+                        </td>
+                        <td>
+                            <h:button outcome="/index" value="#{resources.ListReservationsIndexLink}"/>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

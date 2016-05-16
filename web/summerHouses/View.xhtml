@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{resources.ViewSummerHousesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{resources.ViewSummerHousesLabel_name}"/>
+                    <h:outputText value="#{summerHousesController.selected.name}" title="#{resources.ViewSummerHousesTitle_name}"/>
+                    <h:outputText value="#{resources.ViewSummerHousesLabel_number}"/>
+                    <h:outputText value="#{summerHousesController.selected.number}" title="#{resources.ViewSummerHousesTitle_number}"/>
+                    <h:outputText value="#{resources.ViewSummerHousesLabel_maxGuests}"/>
+                    <h:outputText value="#{summerHousesController.selected.maxGuests}" title="#{resources.ViewSummerHousesTitle_maxGuests}"/>
+                    <h:outputText value="#{resources.ViewSummerHousesLabel_availableFrom}"/>
+                    <h:outputText value="#{summerHousesController.selected.availableFrom}" title="#{resources.ViewSummerHousesTitle_availableFrom}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{resources.ViewSummerHousesLabel_availableTo}"/>
+                    <h:outputText value="#{summerHousesController.selected.availableTo}" title="#{resources.ViewSummerHousesTitle_availableTo}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{resources.ViewSummerHousesLabel_price}"/>
+                    <h:outputText value="#{summerHousesController.selected.price}" title="#{resources.ViewSummerHousesTitle_price}"/>
+                </h:panelGrid>
+                <table class="form-buttons">
+                    <tr>
+                        <td>
+                            <h:commandButton action="#{summerHousesController.destroyAndView}" value="#{resources.ViewSummerHousesDestroyLink}"/>
+                        </td>
+                        <td>
+                            <h:button outcome="Edit" value="#{resources.ViewSummerHousesEditLink}"/>
+                        </td>
+                        <td>
+                            <h:commandButton action="#{summerHousesController.prepareCreate}" value="#{resources.ViewSummerHousesCreateLink}"/>
+                        </td>
+                        <td>
+                            <h:commandButton action="#{summerHousesController.prepareList}" value="#{resources.ViewSummerHousesShowAllLink}"/>
+                        </td>
+                        <td>
+                            <h:button outcome="/index" value="#{resources.ViewSummerHousesIndexLink}"/>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

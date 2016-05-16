@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{resources.ViewMembersTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{resources.ViewMembersLabel_name}"/>
+                    <h:outputText value="#{membersController.selected.name}" title="#{resources.ViewMembersTitle_name}"/>
+                    <h:outputText value="#{resources.ViewMembersLabel_surname}"/>
+                    <h:outputText value="#{membersController.selected.surname}" title="#{resources.ViewMembersTitle_surname}"/>
+                    <h:outputText value="#{resources.ViewMembersLabel_email}"/>
+                    <h:outputText value="#{membersController.selected.email}" title="#{resources.ViewMembersTitle_email}"/>
+                    <h:outputText value="#{resources.ViewMembersLabel_type}"/>
+                    <h:outputText value="#{membersController.selected.type}" title="#{resources.ViewMembersTitle_type}"/>
+                    <h:outputText value="#{resources.ViewMembersLabel_points}"/>
+                    <h:outputText value="#{membersController.selected.points}" title="#{resources.ViewMembersTitle_points}"/>
+                </h:panelGrid>
+                <table class="form-buttons">
+                    <tr>
+                        <td>
+                            <h:commandButton action="#{membersController.destroyAndView}" value="#{resources.ViewMembersDestroyLink}"/>
+                        </td>
+                        <td>
+                            <h:button outcome="Edit" value="#{resources.ViewMembersEditLink}"/>
+                        </td>
+                        <td>
+                            <h:commandButton action="#{membersController.prepareCreate}" value="#{resources.ViewMembersCreateLink}"/>
+                        </td>
+                        <td>
+                            <h:commandButton action="#{membersController.prepareList}" value="#{resources.ViewMembersShowAllLink}"/>
+                        </td>
+                        <td>
+                            <h:button outcome="/index" value="#{resources.ViewMembersIndexLink}"/>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

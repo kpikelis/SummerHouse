@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{resources.EditReservationsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{resources.EditReservationsLabel_reservationFromDate}" for="reservationFromDate" />
+                    <h:inputText id="reservationFromDate" value="#{reservationsController.selected.reservationFromDate}" title="#{resources.EditReservationsTitle_reservationFromDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{resources.EditReservationsLabel_reservationToDate}" for="reservationToDate" />
+                    <h:inputText id="reservationToDate" value="#{reservationsController.selected.reservationToDate}" title="#{resources.EditReservationsTitle_reservationToDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{resources.EditReservationsLabel_additionalServicesId}" for="additionalServicesId" />
+                    <h:selectOneMenu id="additionalServicesId" value="#{reservationsController.selected.additionalServicesId}" title="#{resources.EditReservationsTitle_additionalServicesId}" >
+                        <f:selectItems value="#{additionalServicesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{resources.EditReservationsLabel_membersId}" for="membersId" />
+                    <h:selectOneMenu id="membersId" value="#{reservationsController.selected.membersId}" title="#{resources.EditReservationsTitle_membersId}" >
+                        <f:selectItems value="#{membersController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{resources.EditReservationsLabel_summerHousesId}" for="summerHousesId" />
+                    <h:selectOneMenu id="summerHousesId" value="#{reservationsController.selected.summerHousesId}" title="#{resources.EditReservationsTitle_summerHousesId}" >
+                        <f:selectItems value="#{summerHousesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <table class="form-buttons">
+                    <tr>
+                        <td>
+                            <h:commandButton action="#{reservationsController.update}" value="#{resources.EditReservationsSaveLink}"/>
+                        </td>
+                        <td>
+                            <h:button  outcome="View" value="#{resources.EditReservationsViewLink}"/>
+                        </td>
+                        <td>
+                            <h:commandButton action="#{reservationsController.prepareList}" value="#{resources.EditReservationsShowAllLink}" immediate="true"/>
+                        </td>
+                        <td>
+                            <h:button  outcome="/index" value="#{resources.EditReservationsIndexLink}"/>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
